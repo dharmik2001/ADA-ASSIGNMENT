@@ -1,0 +1,38 @@
+Problem link : https://cses.fi/problemset/task/1643
+
+#include<bits/stdc++.h>
+using namespace std;
+#define rep(i,a,b) for(int i=a;i<b;i++)
+#define pb push_back 
+#define mp make_pair
+#define int long long int 
+typedef unsigned long long ull;
+#define mod 1000000007
+#define ff first
+#define ss second
+#define all(x) (x).begin(),(x).end()
+#define codec ios_base::sync_with_stdio(false);cin.tie(NULL);
+typedef vector<int> vi;
+typedef set<int> si;
+#define deb cout<<"Hello"<<endl;
+typedef pair<int, int> pi;
+bool sortbysec(const pair<int,int> &a,const pair<int,int> &b) 
+{ 
+    if(a.second==b.second) return a.first <b.first;
+    return (a.second < b.second); 
+}
+signed main()
+{
+	int n;
+    cin>>n;
+    int a[n];
+    rep(i,0,n) cin>>a[i];
+    int ans = a[0];
+    int sum = a[0];
+    rep(i,1,n){
+        sum = max(sum+a[i],a[i]);
+        ans = max(ans,sum);
+    }
+    cout<<ans;
+	return 0;
+}

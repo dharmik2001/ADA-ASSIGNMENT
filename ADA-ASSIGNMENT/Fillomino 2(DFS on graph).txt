@@ -1,0 +1,64 @@
+Problem link : https://codeforces.com/problemset/problem/1517/C
+
+#include<bits/stdc++.h>
+using namespace std;
+#define rep(i,a,b) for(int i=a;i<b;i++)
+#define pb push_back
+#define mp make_pair
+#define int long long int
+typedef unsigned long long ull;
+#define mod 1000000007
+#define ff first
+#define ss second
+#define all(x) (x).begin(),(x).end()
+#define codec ios_base::sync_with_stdio(false);cin.tie(NULL);
+typedef vector<int> vi;
+typedef set<int> si;
+#define deb cout<<"Hello"<<endl;
+typedef pair<int, int> pi;
+bool sortbysec(const pair<int, int> &a, const pair<int, int> &b)
+{
+  if (a.second == b.second) return a.first < b.first;
+  return (a.second < b.second);
+}
+ 
+int ans[505][505], val, n;
+void dfs(int i, int j, int valx)
+{
+  if (val == 0 || i < 0 || j < 0 || i >= n || j >= n || ans[i][j] != -1) return;
+  val--;
+  ans[i][j] = valx;
+  dfs(i + 1, j, valx);
+  dfs(i, j - 1, valx);
+}
+ 
+void solve()
+{
+  cin >> n;
+  vi a(n);
+  rep(i, 0, n) cin >> a[i];
+  memset(ans, -1, sizeof(ans));
+  for (int i = n - 1; i >= 0; i--) {
+    val = a[i];
+    dfs(i, i, val);
+  }
+  rep(i, 0, n) {
+    rep(j, 0, i + 1) cout << ans[i][j] << " ";
+    cout << endl;
+  }
+}
+ 
+signed main()
+{
+#ifndef ONLINE_JUDGE
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
+#endif
+  int t = 1;
+  //cin >> t;
+  while (t--)
+  {
+    solve();
+  }
+  return 0;
+}

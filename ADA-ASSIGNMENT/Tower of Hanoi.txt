@@ -1,0 +1,33 @@
+Problem link : https://cses.fi/problemset/task/2165
+
+#include<bits/stdc++.h>
+using namespace std;
+#define rep(i,a,b) for(int i=a;i<b;i++)
+#define pb push_back 
+#define mp make_pair
+#define int long long int 
+typedef unsigned long long ull;
+#define mod 1000000007
+#define ff first
+#define ss second
+#define codec ios_base::sync_with_stdio(false);cin.tie(NULL);
+typedef vector<int> vi;
+typedef set<int> si;
+#define deb cout<<"Hello"<<endl;
+typedef pair<int, int> pi;
+ 
+void toh(int n, int a, int b, int c){
+    if(n>0){
+        toh(n-1,a,c,b);
+        cout<<a<<" "<<c<<endl;
+        toh(n-1,b,a,c);
+    }
+}
+signed main()
+{
+	int t;
+	cin>>t;
+    cout<<pow(2,t)-1<<endl;
+    toh(t,1,2,3);
+	return 0;
+}

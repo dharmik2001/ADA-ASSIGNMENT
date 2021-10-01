@@ -1,0 +1,75 @@
+https://codeforces.com/problemset/problem/445/B
+
+// I am not responsible of this code.
+// They made me write it, against my will.
+
+#include<bits/stdc++.h>
+using namespace std;
+#define rep(i,a,b) for(int i=a;i<b;i++)
+#define pb push_back
+#define mp make_pair
+#define int long long int
+typedef unsigned long long ull;
+#define mod 1000000007
+#define ff first
+#define ss second
+#define all(x) (x).begin(),(x).end()
+#define codec ios_base::sync_with_stdio(false);cin.tie(NULL);
+typedef vector<int> vi;
+typedef set<int> si;
+#define deb cout<<"Hello"<<endl;
+typedef pair<int, int> pi;
+bool sortbysec(const pair<int, int> &a, const pair<int, int> &b)
+{
+  if (a.second == b.second) return a.first < b.first;
+  return (a.second < b.second);
+}
+
+// Happy Debugging Suckers!
+int ans, cnt = 1;
+vi alist[55], vis(55);
+
+void dfs(int n)
+{
+  vis[n] = 1;
+  cnt *= 2;
+  for (auto i : alist[n]) {
+    if (vis[i] == 0) dfs(i);
+  }
+}
+
+void solve()
+{
+  int n, m;
+  cin >> n >> m;
+  int u, v;
+  rep(i, 0, m) {
+    cin >> u >> v;
+    alist[u].pb(v);
+    alist[v].pb(u);
+  }
+  ans = 1;
+  rep(i, 1, n + 1) {
+    if (vis[i] == 0) {
+      cnt = 1;
+      dfs(i);
+      if (cnt > 1) ans *= (cnt / 2);
+    }
+  }
+  cout << ans;
+}
+
+signed main()
+{
+#ifndef ONLINE_JUDGE
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
+#endif
+  int t = 1;
+  //cin >> t;
+  while (t--)
+  {
+    solve();
+  }
+  return 0;
+}

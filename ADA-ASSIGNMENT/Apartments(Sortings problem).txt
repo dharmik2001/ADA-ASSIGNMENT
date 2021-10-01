@@ -1,0 +1,44 @@
+Problem link : https://cses.fi/problemset/task/1084
+
+#include<bits/stdc++.h>
+using namespace std;
+#define rep(i,a,b) for(int i=a;i<b;i++)
+#define pb push_back 
+#define mp make_pair
+#define int long long int 
+typedef unsigned long long ull;
+#define mod 1000000007
+#define ff first
+#define ss second
+#define all(x) (x).begin(),(x).end()
+#define codec ios_base::sync_with_stdio(false);cin.tie(NULL);
+typedef vector<int> vi;
+typedef set<int> si;
+#define deb cout<<"Hello"<<endl;
+typedef pair<int, int> pi;
+ 
+signed main()
+{
+	int n,m,k;
+    cin>>n>>m>>k;
+    int ans = 0;
+    int a[n],b[m];
+    rep(i,0,n) cin>>a[i];
+    rep(i,0,m) cin>>b[i];
+    sort(a,a+n);
+    sort(b,b+m);
+    int i = 0, j = 0;
+    while(i<n && j<m){
+        if(abs(a[i]-b[j])<=k){
+            i++;
+            j++;
+            ans++;
+        }
+        else{
+            if(a[i]-b[j]>k) ++j;
+            else ++i; 
+        }
+    }
+    cout<<ans<<endl;
+	return 0;
+}

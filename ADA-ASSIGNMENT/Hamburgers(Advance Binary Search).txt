@@ -1,0 +1,50 @@
+Problem link : https://codeforces.com/problemset/problem/371/C
+
+#include<bits/stdc++.h>
+using namespace std;
+#define rep(i,a,b) for(int i=a;i<b;i++)
+#define pz push_back 
+#define mp make_pair
+#define int long long int 
+typedef unsigned long long ull;
+#define mod 1000000007
+#define ff first
+#define ss second
+#define codec ios_base::sync_with_stdio(false);cin.tie(NULL);
+typedef vector<int> vi;
+typedef set<int> si;
+#define deb cout<<"Hello"<<endl;
+typedef pair<int, int> pi;
+map<char,int> m;
+int pb,ps,pc;
+int nb,ns,nc,r;
+string s;
+bool make(int x){
+    int want = 0;
+    int ff;
+    ff = max(0LL,m['B']*x - nb);
+    want += (ff*pb);
+    ff = max(0LL,m['S']*x - ns);
+    want += (ff*ps);
+    ff = max(0LL,m['C']*x - nc);
+    want += (ff*pc);
+ 
+    return want <= r;
+}
+signed main()
+{
+    cin>>s;
+    cin>>nb>>ns>>nc;
+    cin>>pb>>ps>>pc;
+    cin>>r;
+ 
+    rep(i,0,s.length()) m[s[i]]++;
+    int l = 0, rc = 1e13;
+    while(l < rc){
+        int mc = (l+rc+1)/2;
+        if(make(mc)) l = mc;
+        else rc = mc-1;
+    }
+    cout<<l<<endl;
+	return 0;   
+}
